@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculadora de IMC</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        margin: 0;
+      }
+
+      .container {
+        background-color: rgb(181, 152, 218);
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgb(53, 10, 94);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h1 {
+        text-align: center;
+        color: #2f0b58;
+      }
+
+      h3 {
+        text-align: center;
+        color: #3f2381;
+      }
+
+      label {
+        margin-bottom: 20px;
+        color: #f2f1f3;
+      }
+
+      input {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #3f2381;
+        border-radius: 4px;
+      }
+
+      .button-container {
+        display: flex;
+        justify-content: space-between;
+        border-radius: 5%;
+        color: #3f2381;
+      }
+
+      button {
+        padding: 10px;
+        background-color: #633eb9;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .button-container input {
+        width: 48%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Calculadora do IMC</h1>
+      <h3>Informe sua altura e seu peso para obter o IMC</h3>
+      <!-- Adicionado um formulário com o id="formulario" -->
+      <form id="formulario">
+        <label for="id_nome">
+          <strong>Seu Nome:</strong>
+          <input
+            type="text"
+            placeholder="Informe seu nome"
+            name="Nome"
+            id="id_nome"
+            class="Nome"
+          />
+        </label>
+        <br />
+        <label for="id_altura">
+          <strong>Sua Altura</strong>
+          <input
+            type="text"
+            placeholder="Informe sua altura:"
+            name="altura"
+            id="id_altura"
+            class="numeros"
+          />
+        </label>
+        <br />
+        <label for="id_peso">
+          <strong>Seu Peso:</strong>
+          <input
+            type="text"
+            placeholder="Informe seu peso:"
+            name="Peso"
+            id="id_peso"
+            class="numeros"
+          />
+        </label>
+
+        <div class="button-container">
+          <!-- Alterado para funcionar com o formulário -->
+          <input type="submit" value="Verificar IMC" />
+          <input type="button" value="Limpar" onclick="limpar()" />
+        </div>
+      </form>
+
+      <div id="resultado"></div>
+      <!-- Aqui, onde o resultado do IMC será exibido -->
+    </div>
+
+    <script>
+      // Adicionando o event listener ao formulário
+      document.getElementById("formulario").addEventListener("submit", (e) => {
+        e.preventDefault(); // Impede o envio do formulário
+
+        let nome = document.querySelector("#id_nome").value;
+        let resultado = document.querySelector("#resultado");
+
+        let altura = document.querySelector("#id_altura").value;
+        altura = parseFloat(altura.replace(",", "."));
+
+        let peso = document.querySelector("#id_peso").value;
+        peso = parseFloat(peso.replace(",", "."));
+
+        let imc = peso / altura ** 2; // Calculando IMC corretamente
+
+        // Exibindo a saudação e o IMC
+        resultado.innerHTML = `
+Olá, <strong>${nome}</strong>
+<br>Seu IMC é <strong>${imc.toFixed(1)}</strong>
+<br> E sua classificação é:
+`;
+
+        // A classificação do IMC
+        if (imc < 18.5) {
+          resultado.innerHTML += "Abaixo do peso";
+        } else if (imc >= 18.5 && imc < 24.9) {
+          resultado.innerHTML += "Peso normal";
+        } else if (imc >= 25 && imc < 29.9) {
+          resultado.innerHTML += "Sobrepeso";
+        } else if (imc >= 30 && imc < 34.9) {
+          resultado.innerHTML += "Obesidade I";
+        } else if (imc >= 35 && imc < 39.9) {
+          resultado.innerHTML += "Obesidade II (severa)";
+        } else if (imc >= 40) {
+          resultado.innerHTML += "Obesidade III (mórbida)";
+        }
+      });
+
+      // Função de limpar os campos
+      function limpar() {
+        document.getElementById("id_nome").value = "";
+        document.getElementById("id_altura").value = "";
+        document.getElementById("id_peso").value = "";
+        document.getElementById("resultado").innerHTML = "";
+      }
+    </script>
+  </body>
+</html>

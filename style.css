@@ -1,0 +1,50 @@
+* {
+  box-sizing: border-box;
+
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  --cor-primaria: rgb(222, 170, 233);
+  --cor-secundaria: rgb(145, 27, 109);
+  --cor-terciaria: rgb(185, 32, 185);
+}
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 170px;
+
+  background-color: var(--cor-terciaria);
+  color: var(--cor-primaria);
+}
+
+div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 50px;
+
+  background-color: var(--cor-primaria);
+  color: var(--cor-terciaria);
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  margin-left: 16px;
+}
+/*Reseta estilos padrão do navegador*/
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  background-color: var(--cor-primaria);
+  color: var(--cor-secundaria);
+}
